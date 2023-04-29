@@ -1,5 +1,5 @@
 {
-  "name": "another-http-client",
+  "name": "seeking",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -35,6 +35,9 @@
   },
   "type": "module",
   "dependencies": {
+    "@sentry/node": "^7.50.0",
+    "@sentry/svelte": "^7.50.0",
+    "@sentry/tracing": "^7.50.0",
     "@tauri-apps/api": "^1.2.0"
   }
 }

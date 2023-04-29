@@ -7,7 +7,7 @@
     "distDir": "../build"
   },
   "package": {
-    "productName": "another-http-client",
+    "productName": "Seeking",
     "version": "0.1.0"
   },
   "tauri": {
@@ -58,7 +58,7 @@
         "fullscreen": false,
         "height": 600,
         "resizable": true,
-        "title": "Another HTTP Client",
+        "title": "Seeking",
         "width": 800
       }
     ]
