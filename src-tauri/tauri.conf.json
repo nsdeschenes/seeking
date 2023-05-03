@@ -56,10 +56,10 @@
     "windows": [
       {
         "fullscreen": false,
-        "height": 600,
+        "minHeight": 650,
         "resizable": true,
         "title": "Seeking",
-        "width": 800
+        "minWidth": 970
       }
     ]
   }
