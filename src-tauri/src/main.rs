@@ -14,7 +14,7 @@ fn cause_panic() {
 }
 
 fn main() {
-    let _guard = sentry::init(("https://54fd2eee9c15457292277e47b573b21b@o4504770655092736.ingest.sentry.io/4505099885871104", sentry::ClientOptions {
+    let _guard = sentry::init(("", sentry::ClientOptions {
         release: sentry::release_name!(),
         
         traces_sample_rate: 0.2,

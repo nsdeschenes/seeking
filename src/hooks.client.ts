@@ -2,7 +2,7 @@ import * as SentrySvelte from '@sentry/svelte';
 import type { HandleClientError } from '@sveltejs/kit';
 
 SentrySvelte.init({
-  dsn: 'https://a6566e49d8b74311b63d8c1d264e9877@o4504770655092736.ingest.sentry.io/4505100100042752',
+  dsn: '',
   integrations: [new SentrySvelte.BrowserTracing()],
   tracesSampleRate: 0.2,
 });
