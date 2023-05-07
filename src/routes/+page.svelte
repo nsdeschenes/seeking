@@ -1,6 +1,9 @@
 <script lang="ts">
   import { options } from '@/stores';
   $: url = $options.url;
+  $: method = $options.method;
 </script>
 
-<p>body, url: {url}</p>
+<p>body:</p>
+<p>url: {url}</p>
+<p>method: {method}</p>

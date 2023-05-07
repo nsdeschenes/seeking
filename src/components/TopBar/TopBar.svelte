@@ -2,6 +2,7 @@
   import { options } from '@/stores';
 
   export let url = '';
+  let method: 'GET' | 'POST' = 'GET';
 </script>
 
 <div class="flex items-center gap-2 border border-blue-500 px-4 py-3">
@@ -21,12 +22,23 @@
       type="url"
       name="request-url"
       id="request-url"
-      class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-0 bg-transparent py-1.5 pl-2 text-white ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6 invalid:bg-red-500"
+      class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-0 bg-transparent py-1.5 pl-2 text-white ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 invalid:bg-red-500 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
       placeholder="https://www.example.com"
     />
   </div>
+  <select
+    bind:value={method}
+    on:change={() => {
+        options.update((data) => ({ ...data, method }));
+    }}
+    name="http-method"
+    class="w-fit rounded-md border-0 bg-zinc-700 py-2 pl-3 pr-10 font-mono text-white hover:cursor-pointer hover:bg-zinc-500 sm:text-sm sm:leading-6"
+  >
+    <option value="GET">GET</option>
+    <option value="POST">POST</option>
+  </select>
   <button
-    class="rounded bg-zinc-700 px-4 py-2 font-mono text-white shadow-md hover:cursor-pointer hover:bg-zinc-500 active:bg-zinc-600"
+    class="rounded bg-zinc-700 px-4 py-2 font-mono text-white shadow-md hover:cursor-pointer hover:bg-zinc-500 active:bg-zinc-600 sm:text-sm"
     >Request</button
   >
 </div>
