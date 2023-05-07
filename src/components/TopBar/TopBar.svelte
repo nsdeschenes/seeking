@@ -1,7 +1,11 @@
 <script lang="ts">
+  import { createMutation } from '@tanstack/svelte-query';
+
   import { options } from '@/stores';
 
+  export let makeRequest
   export let url = '';
+
   let method: 'GET' | 'POST' = 'GET';
 </script>
 
@@ -29,7 +33,7 @@
   <select
     bind:value={method}
     on:change={() => {
-        options.update((data) => ({ ...data, method }));
+      options.update((data) => ({ ...data, method }));
     }}
     name="http-method"
     class="w-fit rounded-md border-0 bg-zinc-700 py-2 pl-3 pr-10 font-mono text-white hover:cursor-pointer hover:bg-zinc-500 sm:text-sm sm:leading-6"
@@ -38,6 +42,9 @@
     <option value="POST">POST</option>
   </select>
   <button
+    on:click={() => {
+      $makeRequest.mutate({ url, method });
+    }}
     class="rounded bg-zinc-700 px-4 py-2 font-mono text-white shadow-md hover:cursor-pointer hover:bg-zinc-500 active:bg-zinc-600 sm:text-sm"
     >Request</button
   >
