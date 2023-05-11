@@ -1,10 +1,19 @@
 import { writable } from 'svelte/store';
 
+interface Options {
+  url: string;
+  method: 'GET' | 'POST';
+  headers: Map<number, { key: string; value: string }>;
+}
+
 const createOptions = () => {
-  return writable({
+  const store =  writable<Options>({
     url: '',
     method: 'GET',
+    headers: new Map([[0, { key: '', value: '' }]]),
   });
+
+  return store
 };
 
 export const options = createOptions();

@@ -3,7 +3,7 @@
 
   import { options } from '@/stores';
 
-  export let makeRequest
+  export let makeRequest;
   export let url = '';
 
   let method: 'GET' | 'POST' = 'GET';
@@ -19,9 +19,6 @@
       bind:value={url}
       on:input={() => {
         options.update((data) => ({ ...data, url }));
-      }}
-      on:invalid={() => {
-        console.debug('invalid');
       }}
       type="url"
       name="request-url"
@@ -43,6 +40,7 @@
   </select>
   <button
     on:click={() => {
+      console.debug($options);
       $makeRequest.mutate({ url, method });
     }}
     class="rounded bg-zinc-700 px-4 py-2 font-mono text-white shadow-md hover:cursor-pointer hover:bg-zinc-500 active:bg-zinc-600 sm:text-sm"

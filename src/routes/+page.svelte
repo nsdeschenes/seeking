@@ -2,6 +2,8 @@
   import { options } from '@/stores';
   $: url = $options.url;
   $: method = $options.method;
+  $: headers = $options.headers;
+
 </script>
 
 <p>body:</p>
