@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store';
 
-interface Options {
+export interface Options {
   url: string;
   method: 'GET' | 'POST';
   headers: Map<number, { key: string; value: string }>;

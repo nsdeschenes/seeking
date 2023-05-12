@@ -3,7 +3,7 @@
   import { QueryClient, QueryClientProvider } from '@tanstack/svelte-query';
 
   import '../app.css';
-  import Temp from '@/components/Temp.svelte';
+  import MainLayout from '@/components/MainLayout.svelte';
 
   const queryClient = new QueryClient({
     defaultOptions: {
@@ -16,8 +16,8 @@
 
 <QueryClientProvider client={queryClient}>
   <div class="flex h-full flex-col gap-2">
-    <Temp>
+    <MainLayout>
       <slot />
-    </Temp>
+    </MainLayout>
   </div>
 </QueryClientProvider>
