@@ -1,4 +1,4 @@
-<div class="flex h-full grow flex-col items-center border border-green-500">
+<div class="flex h-full grow flex-col items-center">
   <ul class="isolate inline-flex gap-2 py-2">
     <li>
       <a

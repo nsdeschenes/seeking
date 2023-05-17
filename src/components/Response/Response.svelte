@@ -4,7 +4,7 @@
   $: data = JSON.stringify($rawRequest.data, null, 2);
 </script>
 
-<div class="h-[calc(100vh-70px)] border border-white">
+<div class="h-[calc(100vh-70px)]">
   <p class="h-[calc(100vh-70px)] overflow-x-scroll overflow-y-scroll font-mono text-sm">
     {#if !data && !$rawRequest.isLoading} No data {/if}
     {#if $rawRequest.isLoading}
