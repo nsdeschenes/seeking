@@ -1,11 +1,10 @@
 <script lang="ts">
+  import CodeEditor from '@/components/CodeEditor/CodeEditor.svelte';
   import { options } from '@/stores';
-  $: url = $options.url;
-  $: method = $options.method;
-  $: headers = $options.headers;
 
+  let body = '';
 </script>
 
-<p>body:</p>
-<p>url: {url}</p>
-<p>method: {method}</p>
+<div class="mt-2">
+  <CodeEditor />
+</div>
