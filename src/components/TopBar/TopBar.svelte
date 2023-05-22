@@ -9,7 +9,7 @@
   let method: 'GET' | 'POST' = 'GET';
 </script>
 
-<div class="flex items-center gap-2 px-4 py-3">
+<div class="flex items-center gap-2 px-4 py-3 shadow-zinc-900 shadow-sm">
   <div class="flex w-5/6 rounded-md font-mono shadow-sm lg:w-3/6">
     <span
       class="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 px-3 text-gray-500 sm:text-sm"

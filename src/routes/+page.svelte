@@ -5,6 +5,6 @@
   let body = '';
 </script>
 
-<div class="mt-2">
+<div>
   <CodeEditor />
 </div>

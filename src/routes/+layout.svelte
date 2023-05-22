@@ -15,9 +15,7 @@
 </script>
 
 <QueryClientProvider client={queryClient}>
-  <div class="flex h-full flex-col gap-2">
-    <MainLayout>
-      <slot />
-    </MainLayout>
-  </div>
+  <MainLayout>
+    <slot />
+  </MainLayout>
 </QueryClientProvider>
