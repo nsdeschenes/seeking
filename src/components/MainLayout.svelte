@@ -4,18 +4,43 @@
   import Request from './Request/Request.svelte';
   import Response from './Response/Response.svelte';
   import type { Options } from '../stores/options';
+  import { z } from 'zod';
+
+  const headerSchema = z.object({
+    key: z.string().min(1),
+    value: z.string().min(1),
+  });
+
+  const createHeaders = ({ headers }: { headers: Options['headers'] }) => {
+    const headerObject = new Headers();
+
+    headers.forEach((header) => {
+      if (headerSchema.safeParse(header).success) {
+        headerObject.append(header.key, header.value);
+      }
+    });
+
+    return headerObject;
+  };
+
+  const bodySchema = z.string().min(1);
+
+  const createBody = ({ body }: { body: Options['body'] }) => {
+    if (bodySchema.safeParse(body).success) {
+      return JSON.stringify(body);
+    }
+  };
 
   const makeRequest = createMutation({
-    mutationFn: async ({ url, method, headers }: Options) => {
-      const headerObject = new Headers();
+    mutationFn: async ({ url, method, headers, body }: Options) => {
+      const formattedHeaders = createHeaders({ headers });
+      const configuredBody = createBody({ body });
 
-      headers.forEach((header) => {
-        if (header.key !== '' && header.value !== '') {
-          headerObject.append(header.key, header.value);
-        }
+      const response = await fetch(url, {
+        method,
+        headers: formattedHeaders,
+        body: configuredBody,
       });
-
-      const response = await fetch(url, { method, headers: headerObject });
       return response.json();
     },
   });
@@ -23,8 +48,8 @@
 
 <div class="flex h-full flex-col gap-2">
   <TopBar {makeRequest} />
-  <div class="grid  grid-cols-2 gap-2 pt-2">
-    <ul class="isolate inline-flex gap-2 py-2 justify-center">
+  <div class="grid grid-cols-2 gap-2 pt-2">
+    <ul class="isolate inline-flex justify-center gap-2 py-2">
       <li>
         <a
           href="/"

@@ -4,7 +4,7 @@
 -->
 
 <script lang="ts">
-  import { onMount } from 'svelte';
+  import { afterUpdate, beforeUpdate, onMount } from 'svelte';
   // @ts-ignore
   import * as ace from 'ace-builds/src-noconflict/ace.js';
   import 'ace-builds/esm-resolver.js';
@@ -14,9 +14,20 @@
   import '@/styles/seekingTheme.css';
 
   $: body = $options.body;
-  export let readOnly = false;
+  $: method = $options.method;
 
   let editor: any = null;
+  $: editor;
+
+  afterUpdate(() => {
+    if (method === 'GET') {
+      editor.setReadOnly(true);
+      editor.setGhostText('\tUnable to edit body for GET requests.');
+    } else {
+      editor.setReadOnly(false);
+      editor.removeGhostText('');
+    }
+  });
 
   onMount(() => {
     editor = ace.edit('editor', {
@@ -27,12 +38,8 @@
       showPrintMargin: false,
       useWorker: false,
       fontSize: '14px',
-      readOnly,
       tabSize: 2,
     });
-
-    editor.setValue(body);
-    editor.clearSelection();
 
     editor.session.on('change', () => {
       const value = editor.getValue();
