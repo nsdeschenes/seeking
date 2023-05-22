@@ -2,9 +2,28 @@ import * as SentrySvelte from '@sentry/svelte';
 import type { HandleClientError } from '@sveltejs/kit';
 
 SentrySvelte.init({
-  dsn: '',
+  dsn: import.meta.env.VITE_SVELTE_SENTRY_DSN,
   integrations: [new SentrySvelte.BrowserTracing()],
   tracesSampleRate: 0.2,
+  environment: import.meta.env.MODE,
+  beforeSend(event) {
+    if (event.user) {
+      delete event.user?.ip_address;
+      delete event.user?.email;
+      delete event.user?.username;
+    }
+
+    return event;
+  },
+  beforeSendTransaction(event) {
+    if (event.user) {
+      delete event.user?.ip_address;
+      delete event.user?.email;
+      delete event.user?.username;
+    }
+
+    return event;
+  },
 });
 
 SentrySvelte.setTag('svelteKit', 'browser');
