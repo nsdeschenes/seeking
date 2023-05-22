@@ -3,6 +3,9 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
   plugins: [sveltekit()],
+  optimizeDeps: {
+    exclude: ['ace-code'],
+  },
   clearScreen: false,
   // Tauri expects a fixed port, fail if that port is not available
   server: {
