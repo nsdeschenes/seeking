@@ -23,10 +23,15 @@
     return headerObject;
   };
 
-  const bodySchema = z.string().min(1);
+  const literalSchema = z.union([z.string(), z.number(), z.boolean(), z.null()]);
+  type Literal = z.infer<typeof literalSchema>;
+  type Json = Literal | { [key: string]: Json } | Json[];
+  const jsonSchema: z.ZodType<Json> = z.lazy(() =>
+    z.union([literalSchema, z.array(jsonSchema), z.record(jsonSchema)])
+  );
 
   const createBody = ({ body }: { body: Options['body'] }) => {
-    if (bodySchema.safeParse(body).success) {
+    if (jsonSchema.safeParse(body).success) {
       return JSON.stringify(body);
     }
   };
