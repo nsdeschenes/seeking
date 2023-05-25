@@ -1,4 +1,4 @@
-<h1 align="center">License Generator</h1>
+<h1 align="center">Seeking</h1>
 
 ## About
 
